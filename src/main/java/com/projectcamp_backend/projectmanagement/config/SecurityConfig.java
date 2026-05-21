@@ -23,13 +23,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authRequest ->
-                        authRequest.requestMatchers(CommonConstants.Auth.REGISTER,
-                                        CommonConstants.Auth.LOGIN).permitAll()
-                                .anyRequest().authenticated())
-        .httpBasic(withDefaults());
-        return http.build();
+        return http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authRequest -> authRequest
+                                .requestMatchers(CommonConstants.Auth.REGISTER).permitAll()
+                        .requestMatchers(CommonConstants.Auth.LOGIN).permitAll()
+                        .requestMatchers("/api/v1/auth/geratetoken").permitAll()
+                        .anyRequest().authenticated()).httpBasic(withDefaults()).build();
     }
 
 

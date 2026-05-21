@@ -2,10 +2,10 @@ spring:
   application:
     name: projectmanagement
 
-#  security:
-    user:
-      name: admin
-      password: admin123
+##  security:
+#    user:
+#      name: admin
+#      password: admin123
 
   datasource:
     # URL includes compatibility flags for modern MySQL caching_sha2_password authentication
@@ -26,13 +26,13 @@ spring:
 
 
 ##  Security Configuration for JWT-based Authentication
-#application:
-#  security:
-#    jwt:
-#      # Generate a secure HS256 key (at least 256 bits/32 characters long)
-#      secret-key: "317f82f4e31a5e664c8c65cd94d4e8e92ead51f1408992afc356f6e678018083"
-#      access-token-expiration: 900000    # 15 minutes in milliseconds
-#      refresh-token-expiration: 604800000 # 7 days in milliseconds
+application:
+  security:
+    jwt:
+      # Generate a secure HS256 key (at least 256 bits/32 characters long)
+      secret-key: "317f82f4e31a5e664c8c65cd94d4e8e92ead51f1408992afc356f6e678018083"
+      access-token-expiration: 1800000    # 30 minutes in milliseconds
+      refresh-token-expiration: 604800000 # 7 days in milliseconds
 
 #  servlet:
 #    multipart:
