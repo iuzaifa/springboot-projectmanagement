@@ -1,6 +1,7 @@
 package com.projectcamp_backend.projectmanagement.service.serviceImpl;
 
 import com.projectcamp_backend.projectmanagement.entity.ERole;
+import com.projectcamp_backend.projectmanagement.entity.Roles;
 import com.projectcamp_backend.projectmanagement.entity.User;
 import com.projectcamp_backend.projectmanagement.exception.EmailAlreadyExistsException;
 import com.projectcamp_backend.projectmanagement.exception.EntityNotFoundException;
@@ -13,7 +14,9 @@ import com.projectcamp_backend.projectmanagement.utility.UsernameGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -31,7 +34,12 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toEntity(request);
         String username = usernameGenerator.generateUsername(request.getFullName());
         user.setUsername(username);
-        user.setRole(ERole.ROLE_USER);
+
+        // Assign ROLE_USER as per enum when new user registers
+        Set<Roles> roles = new HashSet<>();
+        roles.add(new Roles(ERole.ROLE_USER));
+        user.setRoles(roles);
+
         User saveduser = userRepository.save(user);
         return userMapper.toResponse(saveduser);
     }

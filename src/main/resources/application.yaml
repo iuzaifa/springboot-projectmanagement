@@ -2,10 +2,10 @@ spring:
   application:
     name: projectmanagement
 
-  security:
-    user:
-      name: admin
-      password: admin123
+#  security:
+#    user:
+#      name: admin
+#      password: admin123
 
   datasource:
     # URL includes compatibility flags for modern MySQL caching_sha2_password authentication
