@@ -10,24 +10,24 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(CommonConstants.User.ROOT)
-public class UserController {
+@RequestMapping(CommonConstants.Auth.ROOT)
+public class AuthController {
 
     private final UserService userService;
 
 
-
-
-
-    // http://localhost:8080/api/v1/users/3
-    @DeleteMapping(CommonConstants.User.DELETE)
-    public ResponseEntity<ApiResponse<?>> deleteUser (@PathVariable Long userId) {
-        userService.deleteUser(userId);
-        return ResponseEntity.status(200).body(ResponseBuilder.success(200 ,"User deleted successfully"));
+    @GetMapping(CommonConstants.Auth.REGISTER)
+    public String test() {
+        return "Testing......... ";
     }
 
+    // REGISTER
+    @PostMapping(CommonConstants.Auth.REGISTER)
+    public ResponseEntity<ApiResponse<UserResponse>> registerUser(@RequestBody UserRequest request) {
+        UserResponse response = userService.addUser(request);
+        return ResponseEntity.status(201)
+                .body(ResponseBuilder.success(201, "User registered successfully", response));
+    }
 }

@@ -34,18 +34,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse updateUser(Long id, UserRequest request) {
+    public UserResponse updateUser(Long userId, UserRequest request) {
         return null;
     }
 
     @Override
-    public void deleteUser(Long id) {
-
-
+    public void deleteUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new RuntimeException("User not found"));
+        userRepository.delete(user);
     }
 
     @Override
-    public UserResponse getUserById(Long id) {
+    public UserResponse getUserById(Long userId) {
 //        if ()
         return null;
     }

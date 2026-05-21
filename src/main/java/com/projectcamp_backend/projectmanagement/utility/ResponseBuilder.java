@@ -5,6 +5,15 @@ import java.time.LocalDateTime;
 
 public class ResponseBuilder {
 
+    public static <T> ApiResponse<T> success(int status, String message) {
+        return ApiResponse.<T>builder()
+                .status(status)
+                .message(message)
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+
     public static <T> ApiResponse<T> success(int status, String message, T data) {
         return ApiResponse.<T>builder()
                 .status(status)

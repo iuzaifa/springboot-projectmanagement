@@ -7,19 +7,14 @@ import java.util.List;
 
 public interface UserService {
 
-        // add new user
         UserResponse addUser(UserRequest request);
 
-        // update user
-        UserResponse updateUser(Long id, UserRequest request);
+        UserResponse updateUser(Long userId, UserRequest request);
 
-        // delete user
-        void deleteUser(Long id);
+        void deleteUser(Long userId);
 
-        // get user by id
-        UserResponse getUserById(Long id);
+        UserResponse getUserById(Long userId);
 
-        // get all users
         List<UserResponse> getAllUsers();
 
 
