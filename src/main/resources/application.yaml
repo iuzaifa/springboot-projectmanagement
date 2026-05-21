@@ -2,6 +2,11 @@ spring:
   application:
     name: projectmanagement
 
+  security:
+    user:
+      name: admin
+      password: admin123
+
   datasource:
     # URL includes compatibility flags for modern MySQL caching_sha2_password authentication
     url: jdbc:mysql://localhost:3306/projectcampDB?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
@@ -17,17 +22,19 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
-#
-#  servlet:
-#    multipart:
-#      max-file-size: 10MB    # Handles task file attachments size threshold
-#      max-request-size: 10MB
 
-## Custom Security Configuration for your JWT-based Authentication
+
+
+##  Security Configuration for JWT-based Authentication
 #application:
 #  security:
 #    jwt:
 #      # Generate a secure HS256 key (at least 256 bits/32 characters long)
-#      secret-key: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"
+#      secret-key: "317f82f4e31a5e664c8c65cd94d4e8e92ead51f1408992afc356f6e678018083"
 #      access-token-expiration: 900000    # 15 minutes in milliseconds
 #      refresh-token-expiration: 604800000 # 7 days in milliseconds
+
+#  servlet:
+#    multipart:
+#      max-file-size: 10MB    # Handles task file attachments size threshold
+#      max-request-size: 10MB

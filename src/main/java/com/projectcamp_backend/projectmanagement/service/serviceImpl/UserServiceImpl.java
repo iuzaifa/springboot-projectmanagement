@@ -1,7 +1,9 @@
 package com.projectcamp_backend.projectmanagement.service.serviceImpl;
 
+import com.projectcamp_backend.projectmanagement.entity.ERole;
 import com.projectcamp_backend.projectmanagement.entity.User;
 import com.projectcamp_backend.projectmanagement.exception.EmailAlreadyExistsException;
+import com.projectcamp_backend.projectmanagement.exception.EntityNotFoundException;
 import com.projectcamp_backend.projectmanagement.mapper.UserMapper;
 import com.projectcamp_backend.projectmanagement.payload.request.UserRequest;
 import com.projectcamp_backend.projectmanagement.payload.response.UserResponse;
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toEntity(request);
         String username = usernameGenerator.generateUsername(request.getFullName());
         user.setUsername(username);
+        user.setRole(ERole.ROLE_USER);
         User saveduser = userRepository.save(user);
         return userMapper.toResponse(saveduser);
     }
@@ -41,13 +44,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(()-> new RuntimeException("User not found"));
+                .orElseThrow(()-> new EntityNotFoundException("User not found"));
         userRepository.delete(user);
     }
 
     @Override
     public UserResponse getUserById(Long userId) {
-//        if ()
         return null;
     }
 

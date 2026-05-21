@@ -27,7 +27,6 @@ public class ResponseBuilder {
         return ApiResponse.<T>builder()
                 .status(status)
                 .message(message)
-                .data(null)
                 .timestamp(LocalDateTime.now())
                 .build();
     }

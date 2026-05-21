@@ -18,9 +18,9 @@ public class AuthController {
     private final UserService userService;
 
 
-    @GetMapping(CommonConstants.Auth.REGISTER)
-    public String test() {
-        return "Testing......... ";
+    @GetMapping("/healthCheck")
+    public String healthCheck() {
+        return "Spring healthCheck Testing......... ";
     }
 
     // REGISTER
